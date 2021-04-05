@@ -4,15 +4,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {QuestionsModule} from './questions/questions.module';
+import {RouterModule} from '@angular/router';
+import { SharedComponent } from './shared/shared.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SharedComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    QuestionsModule
+    QuestionsModule,
+    RouterModule.forRoot([
+      {path: '', redirectTo: 'questions', pathMatch: 'full'},
+      {path: 'questions',
+      loadChildren: () => import('./questions/questions.module')
+        .then(m => m.QuestionsModule)}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

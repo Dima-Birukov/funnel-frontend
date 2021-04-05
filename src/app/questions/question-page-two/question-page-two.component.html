@@ -1,0 +1,19 @@
+<h1>Create A Policy</h1>
+
+<form [formGroup]="this.questionHandlerService.questionsForm">
+  <div *ngIf="!this.isLoading() else loadingTemplate">
+    <ul >
+      <div *ngFor="let question of questionsArray">
+        <label>{{question.questionName}}</label>
+        <input
+          [type]="question.questionType"
+          [formControlName]="question.questionID">
+
+      </div>
+    </ul>
+    <button (click)="router.navigate(['result'])">Next</button>
+  </div>
+  <ng-template #loadingTemplate>Loading...</ng-template>
+
+
+</form>
