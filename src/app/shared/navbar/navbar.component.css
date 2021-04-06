@@ -1,0 +1,19 @@
+.container{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 4px solid aqua;
+}
+
+.nextLogo{
+  display: flex;
+  padding: 10px;
+  color: aqua;
+  font-size: large;
+  border: 1px solid black;
+}
+
+.trainingProgram{
+  display: flex;
+  border: 1px solid black;
+  align-items: flex-end;
+}

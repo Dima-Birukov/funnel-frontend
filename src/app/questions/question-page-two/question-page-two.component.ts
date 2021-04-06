@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {QuestionHandlerService, QuestionsDTO} from '../services/question-handler.service';
-import {FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
-import {QuestionFormBuilderService} from '../services/question-form-builder.service';
+import {StorageService} from '../../shared/storage/storage.service';
 
 @Component({
   selector: 'fun-question-page-two',
   templateUrl: './question-page-two.component.html',
-  styleUrls: ['./question-page-two.component.css']
+  styleUrls: ['../questions-pages.css']
 })
 export class QuestionPageTwoComponent implements OnInit {
 
@@ -16,7 +15,8 @@ export class QuestionPageTwoComponent implements OnInit {
   private loading = false;
 
   constructor(public questionHandlerService: QuestionHandlerService,
-              public router: Router) { }
+              public router: Router,
+              public storageService: StorageService) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -28,4 +28,7 @@ export class QuestionPageTwoComponent implements OnInit {
     return this.loading;
   }
 
+  submitQuestions(): void{
+    this.questionHandlerService.submitQuestions();
+  }
 }

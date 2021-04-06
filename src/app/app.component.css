@@ -1,0 +1,9 @@
+h1{
+  display: flex;
+  justify-content: center;
+}
+.container{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 4px solid aqua;
+}

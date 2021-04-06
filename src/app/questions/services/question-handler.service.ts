@@ -39,4 +39,7 @@ export class QuestionHandlerService {
     );
 
   }
+  submitQuestions(): void{
+    this.questionApiService.submitQuestions(this.questionsForm.value);
+  }
 }

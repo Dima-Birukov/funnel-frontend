@@ -5,12 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {QuestionsModule} from './questions/questions.module';
 import {RouterModule} from '@angular/router';
-import { SharedComponent } from './shared/shared.component';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SharedComponent
   ],
   imports: [
     BrowserModule,
@@ -18,10 +17,13 @@ import { SharedComponent } from './shared/shared.component';
     QuestionsModule,
     RouterModule.forRoot([
       {path: '', redirectTo: 'questions', pathMatch: 'full'},
-      {path: 'questions',
-      loadChildren: () => import('./questions/questions.module')
-        .then(m => m.QuestionsModule)}
-    ])
+      {
+        path: 'questions',
+        loadChildren: () => import('./questions/questions.module')
+          .then(m => m.QuestionsModule)
+      }
+    ]),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

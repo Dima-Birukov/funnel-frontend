@@ -7,6 +7,7 @@ import { QuestionPageOneComponent } from './question-page-one/question-page-one.
 import { QuestionPageTwoComponent } from './question-page-two/question-page-two.component';
 import { QuestionResultPageComponent } from './question-result-page/question-result-page.component';
 import {RouterModule} from '@angular/router';
+import {SharedModule} from '../shared/shared.module';
 
 
 
@@ -18,6 +19,7 @@ import {RouterModule} from '@angular/router';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    SharedModule,
     RouterModule.forChild([
       {path: '', redirectTo: '1', pathMatch: 'full'},
       {path: '1', component: QuestionPageOneComponent},

@@ -1,17 +1,37 @@
 <h1>Create A Policy</h1>
+<pre>{{this.questionHandlerService.questionsForm.value | json}}</pre>
+<form [formGroup]="this.questionHandlerService.questionsForm" >
 
-<form [formGroup]="this.questionHandlerService.questionsForm">
   <div *ngIf="!this.isLoading() else loadingTemplate">
+
     <ul >
       <li *ngFor="let question of questionsArray">
-        <label>{{question.questionName}}</label>
-        <input
-          [type]="question.questionType"
-          [formControlName]="question.questionID"/>
+
+        <label>
+          {{question.questionName}}
+        </label>
+
+        <input *ngIf="question.questionType !== 'RADIO_BUTTON' else radioTemplate"
+          [type]="question.questionType === 'DATE_PICKER' ? 'date' : question.questionType"
+          [formControlName]="question.questionID"
+          (blur)="storageService.saveAnswerLocally(question.questionID, $event)" />
+
+        <ng-template #radioTemplate>
+
+          <label>yes</label>
+          <input type="radio" value="yes" [name]="question.questionID" [formControlName]="question.questionID"
+                 (blur)="storageService.saveAnswerLocally(question.questionID, $event)"/>
+          <label>no</label>
+          <input type="radio" value="no" [name]="question.questionID" [formControlName]="question.questionID"
+                 (blur)="storageService.saveAnswerLocally(question.questionID, $event)"/>
+
+        </ng-template>
 
       </li>
     </ul>
-    <button (click)="router.navigate(['2'])">Next</button>
+
+    <button [disabled]="this.questionHandlerService.questionsForm.invalid"
+            (click)="router.navigate(['2'])">Next</button>
   </div>
   <ng-template #loadingTemplate>Loading...</ng-template>
 

@@ -1,19 +1,40 @@
 <h1>Create A Policy</h1>
+<pre>{{this.questionHandlerService.questionsForm.value | json}}</pre>
+<form  [formGroup]="this.questionHandlerService.questionsForm"
+      (ngSubmit)="submitQuestions()">
 
-<form [formGroup]="this.questionHandlerService.questionsForm">
   <div *ngIf="!this.isLoading() else loadingTemplate">
-    <ul >
-      <div *ngFor="let question of questionsArray">
-        <label>{{question.questionName}}</label>
-        <input
-          [type]="question.questionType"
-          [formControlName]="question.questionID">
 
-      </div>
+    <ul>
+      <li *ngFor="let question of questionsArray">
+
+        <label>
+          {{question.questionName}}
+        </label>
+
+        <input *ngIf="question.questionType !== 'CHECKBOX' else checkboxTemplate"
+          [type]="question.questionType"
+          [formControlName]="question.questionID"
+               (blur)="storageService.saveAnswerLocally(question.questionID, $event)"/>
+
+        <ng-template #checkboxTemplate>
+
+          <input type="checkbox"
+            [formControlName]="question.questionID"
+                 (blur)="storageService.saveAnswerLocally(question.questionID, $event)"/>
+
+        </ng-template>
+
+      </li>
     </ul>
-    <button (click)="router.navigate(['result'])">Next</button>
+
+    <div>
+      <button [disabled]="this.questionHandlerService.questionsForm.invalid"
+              (submit)="router.navigate(['result'])"
+              type="submit">Next</button>
+    </div>
+
   </div>
   <ng-template #loadingTemplate>Loading...</ng-template>
-
 
 </form>
