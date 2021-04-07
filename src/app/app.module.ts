@@ -21,6 +21,11 @@ import {SharedModule} from './shared/shared.module';
         path: 'questions',
         loadChildren: () => import('./questions/questions.module')
           .then(m => m.QuestionsModule)
+      },
+      {
+        path: 'management',
+        loadChildren: () => import('./management/management.module')
+          .then(m => m.ManagementModule)
       }
     ]),
     SharedModule

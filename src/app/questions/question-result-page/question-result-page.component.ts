@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Route, Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'fun-question-result-page',
@@ -7,8 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionResultPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
+  isSuccessPage(): Observable<boolean>{
+    return this.route.queryParams
+      .pipe( map( value => value.result === 'SUCCESS')
+    );
+  }
   ngOnInit(): void {
   }
 

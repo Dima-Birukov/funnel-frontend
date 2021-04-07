@@ -1,9 +1,20 @@
-h1{
-  display: flex;
-  justify-content: center;
-}
+
 .container{
   display: flex;
   justify-content: space-between;
-  border-bottom: 4px solid aqua;
+}
+.button-1 {
+  width: 198px;
+  height: 52px;
+  padding: 0px 10px 0px 10px;
+  background: #00a3e0;
+  color: #ffffff;
+  border-color: #00a3e0;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px 3px 3px 3px;
+  font-family: "Helvetica";
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
 }

@@ -24,7 +24,7 @@ import {SharedModule} from '../shared/shared.module';
       {path: '', redirectTo: '1', pathMatch: 'full'},
       {path: '1', component: QuestionPageOneComponent},
       {path: '2', component: QuestionPageTwoComponent},
-      {path: 'result', component: QuestionResultPageComponent}
+      {path: 'resultPage', component: QuestionResultPageComponent}
     ])
   ],
   exports: [

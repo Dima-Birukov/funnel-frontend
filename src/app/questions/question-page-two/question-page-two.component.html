@@ -1,16 +1,15 @@
-<h1>Create A Policy</h1>
-<pre>{{this.questionHandlerService.questionsForm.value | json}}</pre>
-<form  [formGroup]="this.questionHandlerService.questionsForm"
+<h1>Business Details</h1>
+<form class="container" [formGroup]="this.questionHandlerService.questionsForm"
       (ngSubmit)="submitQuestions()">
 
-  <div *ngIf="!this.isLoading() else loadingTemplate">
+  <div class="container"  *ngIf="!this.isLoading() else loadingTemplate">
 
     <ul>
       <li *ngFor="let question of questionsArray">
 
-        <label>
+        <div class="font">
           {{question.questionName}}
-        </label>
+        </div>
 
         <input *ngIf="question.questionType !== 'CHECKBOX' else checkboxTemplate"
           [type]="question.questionType"
@@ -28,10 +27,10 @@
       </li>
     </ul>
 
-    <div>
-      <button [disabled]="this.questionHandlerService.questionsForm.invalid"
+    <div class="buttonContainer">
+      <button class="button1" [disabled]="this.questionHandlerService.questionsForm.invalid"
               (submit)="router.navigate(['result'])"
-              type="submit">Next</button>
+              type="submit">Create my policy</button>
     </div>
 
   </div>

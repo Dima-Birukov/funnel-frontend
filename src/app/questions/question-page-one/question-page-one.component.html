@@ -1,15 +1,14 @@
-<h1>Create A Policy</h1>
-<pre>{{this.questionHandlerService.questionsForm.value | json}}</pre>
-<form [formGroup]="this.questionHandlerService.questionsForm" >
+<h1>Business Details</h1>
+<form class="container" [formGroup]="this.questionHandlerService.questionsForm" >
 
-  <div *ngIf="!this.isLoading() else loadingTemplate">
+  <div class="container"  *ngIf="!this.isLoading() else loadingTemplate">
 
     <ul >
       <li *ngFor="let question of questionsArray">
 
-        <label>
+        <div class="font" >
           {{question.questionName}}
-        </label>
+        </div>
 
         <input *ngIf="question.questionType !== 'RADIO_BUTTON' else radioTemplate"
           [type]="question.questionType === 'DATE_PICKER' ? 'date' : question.questionType"
@@ -17,21 +16,25 @@
           (blur)="storageService.saveAnswerLocally(question.questionID, $event)" />
 
         <ng-template #radioTemplate>
-
-          <label>yes</label>
-          <input type="radio" value="yes" [name]="question.questionID" [formControlName]="question.questionID"
+          <div>
+            <input type="radio" value="yes" [name]="question.questionID" [formControlName]="question.questionID"
                  (blur)="storageService.saveAnswerLocally(question.questionID, $event)"/>
-          <label>no</label>
-          <input type="radio" value="no" [name]="question.questionID" [formControlName]="question.questionID"
+            <label class="font">yes</label>
+          </div>
+          <div>
+            <input type="radio" value="no" [name]="question.questionID" [formControlName]="question.questionID"
                  (blur)="storageService.saveAnswerLocally(question.questionID, $event)"/>
+            <label class="font">no</label>
+          </div>
 
         </ng-template>
 
       </li>
     </ul>
-
-    <button [disabled]="this.questionHandlerService.questionsForm.invalid"
-            (click)="router.navigate(['2'])">Next</button>
+    <div class="buttonContainer">
+      <button class="button1" [disabled]="this.questionHandlerService.questionsForm.invalid"
+              (click)="router.navigate(['2'])">Next</button>
+    </div>
   </div>
   <ng-template #loadingTemplate>Loading...</ng-template>
 

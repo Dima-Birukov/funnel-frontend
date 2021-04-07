@@ -1,42 +1,77 @@
 h1{
   display: flex;
   justify-content: center;
-  border-bottom: 4px solid black;
+  font-size: 26px;
+  font-family: Helvetica;
+
 }
 
 .container{
   display: flex;
-  justify-content: space-between;
-  border: 1px solid blue;
   flex-direction: column;
+  justify-content: space-around;
+  margin: 0 40px;
+
 }
 
-
-li{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding:5px;
-}
-
-.next-button{
-  display: flex;
-  justify-content: center;
-  border: 1px solid black;
-}
-ul{
+ul {
+  list-style-type: none;
   padding: 0;
 }
 
-input{
-  padding: 3px;
+input[type="text" i] {
+  padding: 4px 8px 4px 8px;
+  height: 33px;
+  width: 183px;
 }
-label{
-  display: flex;
-  justify-content: flex-start;
-  padding: 3px;
+input[type="date" i] {
+  padding: 4px 8px 4px 8px;
+  height: 33px;
+  width: 183px;
 }
 
-.questionName{
-  text-align: left;
+.font{
+  font-size: 14px; font-weight: bold; font-family: Helvetica;
+  margin: 10px 0 10px;
+}
+.button1{
+  width: 198px;
+  height: 52px;
+  padding: 0px 10px 0px 10px;
+  background: #00a3e0;
+  color: #ffffff;
+  border-color: #00a3e0;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px 3px 3px 3px;
+  font-family: "Helvetica";
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}
+
+.buttonContainer{
+  display: flex;
+  justify-content: center;
+}
+
+.columnContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 40px;
+
+}
+
+.ng-invalid{
+  border-color: darkred;
+}
+.ng-invalid[type='radio']{
+  border-color: darkred;
+}
+.ng-invalid[type='checkbox']{
+  border-color: darkred;
+  box-shadow: 0 0 0 2px darkred;
+  background-color: darkred;
 }

@@ -1,1 +1,31 @@
-<p>question-result-page works!</p>
+<div class="container">
+
+  <div class="container" *ngIf="(isSuccessPage() | async) else failureMessage">
+    <label class="font" style="font-family: Helvetica; font-size: 36px;">
+      BOOM
+    </label>
+    <label class="font"  style="font-family: Helvetica; font-size: 18px;">
+      Your business is covered
+    </label>
+    <div class="font" style="font-family: Helvetica; font-size: 10px;">
+      *thumbs up icon*
+    </div>
+
+  </div>
+
+  <ng-template class="container" #failureMessage>
+    <label class="font" style="font-family: Helvetica; font-size: 36px;">
+      Oh No!
+    </label>
+    <label class="font" style="font-family: Helvetica; font-size: 26px;">
+      Something went wrong
+    </label>
+    <label class="font"  style="font-family: Helvetica; font-size: 18px;">
+      Please contact our support
+    </label>
+    <div class="font" style="font-family: Helvetica; font-size: 10px;">
+      *thumbs down icon*
+    </div>
+  </ng-template>
+
+</div>
