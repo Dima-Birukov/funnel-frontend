@@ -19,6 +19,7 @@ export class QuestionApiService {
 
   constructor(private httpClient: HttpClient,
               private router: Router) {}
+
   getQuestionsByPageId(pageId: number): Observable<Array<QuestionsDTO>>{
     return this.httpClient.get<Array<QuestionsDTO>>(`http://localhost:8084/question/${pageId}`);
   }
@@ -26,7 +27,7 @@ export class QuestionApiService {
   submitQuestions(value: any): void {
 
 
-    this.httpClient.post(`http://localhost:8084/policy/createPolicy`, value).subscribe(response =>{
+    this.httpClient.post(`http://localhost:8084/policy/createPolicy`, value).subscribe(response => {
         const serverMessage: string = (response as PolicyResponseDTO).policyResponse;
         this.router.navigate(['resultPage'], { queryParams: {result: serverMessage} });
     }

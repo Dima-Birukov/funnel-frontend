@@ -10,4 +10,12 @@ export class StorageService {
   saveAnswerLocally(questionID: string, event: any): void{
     localStorage.setItem(questionID, (event.target as HTMLInputElement).value);
   }
+
+  saveTokenAndEmail(guid: string, email: string): void{
+    localStorage.setItem('token', guid);
+    localStorage.setItem('email', email);
+  }
+
+  getToken(): string | null { return localStorage.getItem('token'); }
+  getEmail(): string | null { return localStorage.getItem('email'); }
 }
