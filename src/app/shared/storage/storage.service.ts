@@ -18,4 +18,5 @@ export class StorageService {
 
   getToken(): string | null { return localStorage.getItem('token'); }
   getEmail(): string | null { return localStorage.getItem('email'); }
+  clearLocalStorage(): void { localStorage.clear(); }
 }

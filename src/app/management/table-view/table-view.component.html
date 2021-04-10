@@ -1,0 +1,96 @@
+<div class="filterFields">
+
+  <div class="inputContainer">
+    <span class="font">
+      Business Name:
+    </span>
+
+    <input type="text" class="filter-input"
+            (change)="this.getPoliciesByFilter( {businessName: businessNameInput.value})" #businessNameInput>
+
+  </div>
+  <div class="inputContainer">
+    <span class="font">
+      Email:
+    </span>
+
+    <input type="text" class="filter-input"
+           (change)="this.getPoliciesByFilter({email: emailInput.value})" #emailInput>
+
+  </div>
+  <div class="inputContainer">
+    <span class="font">
+      Reference:
+    </span>
+
+    <input type="text" class="filter-input"
+           (change)="this.getPoliciesByFilter({reference: referenceInput.value})" #referenceInput>
+
+  </div>
+  <div class="inputContainer">
+    <span class="font">
+      Start Date:
+    </span>
+
+    <input type="date" class="filter-input"
+           (change)="this.getPoliciesByFilter({startDate: startDateInput.value})" #startDateInput>
+
+  </div>
+
+</div>
+<!--<div style="height: 200px; width:200px; border: 1px solid red"></div>-->
+
+
+
+<table class="table table-bordered">
+
+  <thead>
+  <tr>
+    <th scope="col">Business Name:</th>
+    <th scope="col">Email:</th>
+    <th scope="col">Reference:</th>
+    <th scope="col">Start Date:</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let policy of policies">
+    <th scope="row">
+      <button (click)="showModal(modalTemplate, policy)"
+              style="font-weight:bold;color: #00a3e0;background:none;border:none;">
+        {{policy.businessName}}</button>
+    </th>
+    <td>{{policy.email}}</td>
+    <td>{{policy.policyRef}}</td>
+    <td>{{parseDate(policy.policyStartDate)}}</td>
+  </tr>
+
+  </tbody>
+
+</table>
+
+
+<ng-template #modalTemplate>
+  <div class="container">
+    <h4 class="modal-title pull-left">Modal</h4>
+
+    <div class="my-modal-container">
+      <div class="font">Email: {{this.currentModalPolicy.email}}</div>
+      <div class="font">Address: {{this.currentFullAddress}}</div>
+      <div class="font">Email: {{this.parseDate(this.currentModalPolicy.policyStartDate)}}</div>
+
+      <div class="buttonContainer">
+        <button class="button1">Edit</button>
+      </div>
+
+    </div>
+
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    This is a modal.
+  </div>
+</ng-template>
+

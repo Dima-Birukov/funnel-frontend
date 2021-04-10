@@ -13,7 +13,7 @@ import {InterceptorService} from '../management/services/interceptor.service';
     NavbarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   providers: [
     StorageService,

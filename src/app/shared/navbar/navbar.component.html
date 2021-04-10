@@ -1,4 +1,18 @@
-<div class="container">
-  <div class="nextLogo">NEXT</div>
-  <div class="trainingProgram">Training Program</div>
+<div class="navbarContainer">
+  <div class="nextLogo">
+    NEXT
+  </div>
+
+  <div class="trainingProgram">
+    <span >Training Program</span>
+    <div class="buttonContainer" *ngIf="isLoggedIn()">
+
+      <button class="rectangle-4"
+              (click)="logout()">
+        Logout
+      </button>
+
+    </div>
+  </div>
+
 </div>

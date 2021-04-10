@@ -1,0 +1,57 @@
+.filterFields{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
+.filter-input {
+  display: flex;
+  flex-direction: row;
+
+  width: 119px;
+  height: 32px;
+  background: #e6e6e6;
+  color: #000000;
+  border-color: #231f20;
+  border-width: 1px;
+  border-style: solid;
+  font-family: "Helvetica";
+  font-weight: 400;
+  font-size: 12px;
+}
+.inputContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.font{
+  font-size: 14px; font-weight: bold; font-family: Helvetica;
+  margin: 0 0 7px 0;
+}
+.buttonContainer{
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.button1{
+  width: 198px;
+  height: 52px;
+  padding: 0px 10px 0px 10px;
+  background: #00a3e0;
+  color: #ffffff;
+  border-color: #00a3e0;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px 3px 3px 3px;
+  font-family: "Helvetica";
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}
+
+.my-modal-container{
+  display: flex;
+  flex-direction: column;
+}

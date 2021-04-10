@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
+import {StorageService} from '../../shared/storage/storage.service';
+import {Router} from '@angular/router';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {FilterFields, PolicyDto} from '../entities/management-classes';
+import {ManagementApiService} from '../services/management-api.service';
+import {monthNames} from '../../shared/tools/parse-tools';
 
 @Component({
   selector: 'fun-table-view',
@@ -6,10 +12,57 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table-view.component.css']
 })
 export class TableViewComponent implements OnInit {
-
-  constructor() { }
+  // @ts-ignore
+  policies: Array<PolicyDto>;
+  // @ts-ignore
+  modalRef: BsModalRef;
+  // @ts-ignore
+  currentModalPolicy: PolicyDto;
+  currentFullAddress = '';
+  constructor(private storageService: StorageService,
+              private router: Router,
+              private managementApiService: ManagementApiService,
+              private modalService: BsModalService) { }
 
   ngOnInit(): void {
+    this.getPoliciesByFilter({});
+
+    const myModal = document.getElementById('exampleModal');
+    const myInput = document.getElementById('myInput');
+    if (myInput !== null && myModal !== null) {
+      myModal.addEventListener('shown.bs.modal', () => {
+        myInput.focus();
+      });
+    }
+  }
+  showModal(template: TemplateRef<any>, policy: PolicyDto): void{
+    this.modalRef = this.modalService.show(template);
+    this.getPolicyFullAddress(policy.email);
+    this.currentModalPolicy = policy;
+  }
+  getPoliciesByFilter(filterFields: Partial<FilterFields>): void{
+    this.managementApiService.submitFilterFields(new FilterFields(
+      filterFields.businessName,
+      filterFields.email,
+      filterFields.reference,
+      filterFields.startDate
+    )).subscribe(policies => {
+        this.policies = policies.policyList;
+    });
+  }
+  getPolicyFullAddress(email: string): void{
+    this.managementApiService.getFullAddress(email)
+      .subscribe( (response) => {
+        if (response.policyResponse === 'SUCCESS'){
+          this.currentFullAddress = response.policyFullAddress;
+        }else{
+          console.log(response);
+        }
+      });
+  }
+  parseDate(dateInput: string): string{
+    const parsedDate = new Date(dateInput);
+    return monthNames[parsedDate.getMonth()] + ' ' + parsedDate.getDay() + ', ' + parsedDate.getFullYear();
   }
 
 }

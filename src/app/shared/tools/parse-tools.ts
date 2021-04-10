@@ -1,0 +1,6 @@
+import {parseDate} from 'ngx-bootstrap/chronos';
+
+export const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+

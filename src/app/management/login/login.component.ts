@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {ManagementApiService} from '../services/management-api.service';
 import {tap} from 'rxjs/operators';
 import {StorageService} from '../../shared/storage/storage.service';
+import {ParseArgumentException} from '@angular/cli/models/parser';
+import {ManagementApiService} from '../services/management-api.service';
 
 @Component({
   selector: 'fun-login',
@@ -10,9 +11,7 @@ import {StorageService} from '../../shared/storage/storage.service';
   styleUrls: ['../../questions/questions-pages.css']
 })
 export class LoginComponent implements OnInit {
-  loginSuccess = false;
   emailValid = true;
-
 
   constructor(public router: Router,
               private managementApiService: ManagementApiService,

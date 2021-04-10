@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import {QuestionsModule} from './questions/questions.module';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from './shared/shared.module';
+import {ModalModule} from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    ModalModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     QuestionsModule,
