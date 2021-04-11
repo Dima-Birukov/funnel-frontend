@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef} from '@angular/core';
 import {StorageService} from '../../shared/storage/storage.service';
 import {Router} from '@angular/router';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {FilterFields, PolicyDto} from '../entities/management-classes';
+import {FilterFields, PolicyDto, PolicyUpdateDto} from '../entities/management-classes';
 import {ManagementApiService} from '../services/management-api.service';
 import {monthNames} from '../../shared/tools/parse-tools';
 
@@ -19,6 +19,7 @@ export class TableViewComponent implements OnInit {
   // @ts-ignore
   currentModalPolicy: PolicyDto;
   currentFullAddress = '';
+  editModeFlag = false;
   constructor(private storageService: StorageService,
               private router: Router,
               private managementApiService: ManagementApiService,
@@ -62,7 +63,24 @@ export class TableViewComponent implements OnInit {
   }
   parseDate(dateInput: string): string{
     const parsedDate = new Date(dateInput);
-    return monthNames[parsedDate.getMonth()] + ' ' + parsedDate.getDay() + ', ' + parsedDate.getFullYear();
+    return monthNames[parsedDate.getDay()] + ' ' + parsedDate.getMonth() + ', ' + parsedDate.getFullYear();
   }
 
+  updatePolicy(editEmailInput: string, editAddressInput: string, editStartDateInput: string): void{
+    this.managementApiService.updatePolicy(new PolicyUpdateDto(
+      editEmailInput,
+      editAddressInput,
+      editStartDateInput,
+      this.currentModalPolicy.email))
+      .subscribe(response => {
+        if (response.policyResponse === 'SUCCESS'){
+          this.currentModalPolicy.email = editEmailInput;
+          this.currentModalPolicy.policyStartDate = editStartDateInput;
+
+          this.currentFullAddress = editAddressInput;
+
+          this.editModeFlag = false;
+        }
+      });
+  }
 }

@@ -38,13 +38,12 @@
   </div>
 
 </div>
-<!--<div style="height: 200px; width:200px; border: 1px solid red"></div>-->
 
 
-
+<div style="margin: 30px 50px 0 50px">
 <table class="table table-bordered">
 
-  <thead>
+  <thead class="text-center" style="background-color: #c0c0c0">
   <tr>
     <th scope="col">Business Name:</th>
     <th scope="col">Email:</th>
@@ -52,10 +51,10 @@
     <th scope="col">Start Date:</th>
   </tr>
   </thead>
-  <tbody>
+  <tbody class="text-center">
 
   <tr *ngFor="let policy of policies">
-    <th scope="row">
+    <th class="text-center" scope="row">
       <button (click)="showModal(modalTemplate, policy)"
               style="font-weight:bold;color: #00a3e0;background:none;border:none;">
         {{policy.businessName}}</button>
@@ -68,29 +67,83 @@
   </tbody>
 
 </table>
-
+</div>
 
 <ng-template #modalTemplate>
   <div class="container">
-    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide(); this.editModeFlag = false">
+      <span aria-hidden="true">&times;</span>
+    </button>
 
-    <div class="my-modal-container">
-      <div class="font">Email: {{this.currentModalPolicy.email}}</div>
-      <div class="font">Address: {{this.currentFullAddress}}</div>
-      <div class="font">Email: {{this.parseDate(this.currentModalPolicy.policyStartDate)}}</div>
+    <h4 class="modal-title pull-left" style="margin: 20px">{{this.currentModalPolicy.businessName}}</h4>
+
+    <div class="my-modal-details-container" *ngIf="!this.editModeFlag else policyEditTemplate">
+
+      <div class="my-modal-font">Email: {{this.currentModalPolicy.email}}</div>
+      <div class="my-modal-font">Address: {{this.currentFullAddress}}</div>
+      <div class="my-modal-font">Start Date: {{this.parseDate(this.currentModalPolicy.policyStartDate)}}</div>
 
       <div class="buttonContainer">
-        <button class="button1">Edit</button>
+        <button (click)="this.editModeFlag = true" class="modal-edit-btn">Edit</button>
       </div>
 
     </div>
 
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <ng-template #policyEditTemplate>
+      <div class="my-modal-details-container">
+
+        <div class="edit-upper-container">
+
+          <div class="edit-text-container">
+            <div class="my-modal-edit-font" >Email:</div>
+            <div class="my-modal-edit-font" >Address:</div>
+            <div class="my-modal-edit-font" >Start Date:</div>
+          </div>
+          <div class="edit-input-container">
+            <input [value]="this.currentModalPolicy.email" type="text" class="edit-window-input" #editEmailInput/>
+            <input [value]="this.currentFullAddress" type="text" class="edit-window-input" #editAddressInput>
+            <input [value]="this.currentModalPolicy.policyStartDate" type="text" class="edit-window-input" #editStartDateInput/>
+          </div>
+
+        </div>
+
+
+        <div class="buttonContainer">
+          <button (click)="this.updatePolicy(editEmailInput.value, editAddressInput.value, editStartDateInput.value)" class="modal-edit-btn">Save</button>
+        </div>
+
+      </div>
+    </ng-template>
+
+    <div style="margin: 30px 70px 0 70px">
+    <table class="table table-bordered">
+
+      <thead class="text-center" style="background-color: #c0c0c0">
+      <tr>
+        <th scope="col">Question:</th>
+        <th scope="col">Answer:</th>
+      </tr>
+      </thead>
+      <tbody class="text-center">
+
+      <tr>
+        <td>Business Name</td>
+        <td>{{this.currentModalPolicy.businessName}}</td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td>054-1234567</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{this.currentModalPolicy.email}}</td>
+      </tr>
+
+      </tbody>
+
+    </table>
+    </div>
   </div>
-  <div class="modal-body">
-    This is a modal.
-  </div>
+
 </ng-template>
 

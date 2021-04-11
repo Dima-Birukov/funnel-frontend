@@ -1,7 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {FilterFields, PolicyAddressResponseDto, PolicyViewResponseDto, SessionResponseDto} from '../entities/management-classes';
+import {
+  FilterFields,
+  PolicyAddressResponseDto, PolicyResponseDto,
+  PolicyUpdateDto,
+  PolicyViewResponseDto,
+  SessionResponseDto
+} from '../entities/management-classes';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +31,8 @@ export class ManagementApiService {
     let params = new HttpParams();
     params = params.append('email', email);
     return this.httpClient.get<PolicyAddressResponseDto>(`http://localhost:8084/policy/getPolicyAddress`, {params});
+  }
+  updatePolicy(updateParams: PolicyUpdateDto): Observable<PolicyResponseDto>{
+    return this.httpClient.post<PolicyResponseDto>(`http://localhost:8084/policy/updatePolicy`, updateParams);
   }
 }

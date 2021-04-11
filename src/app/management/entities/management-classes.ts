@@ -32,4 +32,15 @@ export interface PolicyAddressResponseDto {
   policyFullAddress: ApiResponseType;
 }
 
+export class PolicyUpdateDto{
+  constructor(public newEmail: string,
+              public address: string,
+              public startDate: string,
+              public email: string | null){}
+}
+
+export interface PolicyResponseDto{
+  policyResponse: ApiResponseType;
+}
+
 
