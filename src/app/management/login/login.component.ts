@@ -12,6 +12,7 @@ import {ManagementApiService} from '../services/management-api.service';
 })
 export class LoginComponent implements OnInit {
   emailValid = true;
+  animationState = false;
 
   constructor(public router: Router,
               private managementApiService: ManagementApiService,
@@ -29,7 +30,12 @@ export class LoginComponent implements OnInit {
           }
         } else {
           this.emailValid = false;
+          this.changeAnimationState();
         }
       });
+  }
+
+  changeAnimationState(): void{
+    this.animationState = !this.animationState;
   }
 }

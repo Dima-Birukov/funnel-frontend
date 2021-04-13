@@ -7,6 +7,7 @@ import {QuestionsModule} from './questions/questions.module';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from './shared/shared.module';
 import {ModalModule} from 'ngx-bootstrap/modal';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {ModalModule} from 'ngx-bootstrap/modal';
     BrowserModule,
     AppRoutingModule,
     QuestionsModule,
+    CommonModule,
     RouterModule.forRoot([
       {path: '', redirectTo: 'questions', pathMatch: 'full'},
       {
